@@ -1101,7 +1101,10 @@ private fun SettingsScreen(vm: NyayViewModel, state: UiState) {
         }
 
         Section("Backend connection") {
-            Text("On a physical phone, use the computer's LAN IP, for example http://192.168.1.5:8000/", color = TextMuted)
+            Text(
+    "NyaySetu AI is connected to the deployed backend.",
+    color = TextMuted
+)
             OutlinedTextField(url, { url = it }, Modifier.fillMaxWidth(), label = { Text("Backend URL") })
             Button({
                 vm.setBackendUrl(url)

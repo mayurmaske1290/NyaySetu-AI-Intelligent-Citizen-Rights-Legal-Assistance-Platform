@@ -192,7 +192,10 @@ class BackendClient(initialBaseUrl: String) {
 
     private fun <T> objects(a: JSONArray?, map: (JSONObject) -> T): List<T> = if (a == null) emptyList() else buildList { for (i in 0 until a.length()) a.optJSONObject(i)?.let { add(map(it)) } }
 
-    private fun normalize(url: String): String = url.trim().ifBlank { "http://10.0.2.2:8000" }.trimEnd('/')
+    private fun normalize(url: String): String =
+        url.trim()
+            .ifBlank { "https://nyaysetuai.onrender.com" }
+            .trimEnd('/')
 
     private fun JSONObject.optStringOrNull(key: String): String? = if (has(key) && !isNull(key)) optString(key).takeIf { it.isNotBlank() } else null
 }
