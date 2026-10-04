@@ -26,6 +26,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -370,7 +371,7 @@ fun NyayApp() {
         shared?.let { event ->
             event.first?.takeIf { it.isNotBlank() }?.let(vm::setInput)
             event.second.firstOrNull()?.let { uri ->
-                processUri(context, uri, vm) {}
+                processUri(context, uri, vm, onBusy = {})
             }
             if (event.first?.isNotBlank() == true || event.second.isNotEmpty()) {
                 vm.setScreen("input")
@@ -1101,10 +1102,7 @@ private fun SettingsScreen(vm: NyayViewModel, state: UiState) {
         }
 
         Section("Backend connection") {
-            Text(
-    "NyaySetu AI is connected to the deployed backend.",
-    color = TextMuted
-)
+            Text("On a physical phone, use the computer's LAN IP, for example http://192.168.1.5:8000/", color = TextMuted)
             OutlinedTextField(url, { url = it }, Modifier.fillMaxWidth(), label = { Text("Backend URL") })
             Button({
                 vm.setBackendUrl(url)
