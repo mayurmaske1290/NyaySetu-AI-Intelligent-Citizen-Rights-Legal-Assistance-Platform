@@ -1,0 +1,9 @@
+[
+  {
+    "id": "seed-1",
+    "document_id": "demo-traffic",
+    "title": "Traffic stop demo chunk",
+    "content": "DEMO DATA: Prefer documented penalties over informal cash. Not statutory text.",
+    "is_demo": true
+  }
+]
